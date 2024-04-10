@@ -13,16 +13,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const txtEleccionComputador = document.querySelector(".eleccion_computador");
     const btnContinuar = document.querySelector(".btn_continuar");
     const txtResultado = document.querySelector(".resultado h1");
+    const txtSubresultado = document.querySelector(".resultado h2");
+    const contenedorComputadorElige = document.querySelector(".computadora_elige div");
+    const btnReiniciar = document.querySelector(".btn_reiniciar");
+    const animComputadorElige = document.querySelector(".computadora_elige div");
 
     //LOGICA
     let usuarioElige;
     let computadoraElige;
     let inicio;
 
+    //INICIO
     escUsuarioElige.style.display= "none";
     escComputadoraElige.style.display="none";
     escResultado.style.display="none";
 
+    //AL USAR BOTON INICIAR
     btnIniciar.addEventListener("click", function(){
         escUsuarioElige.style.display= "block";
         escInicio.style.display="none";
@@ -46,14 +52,20 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             elecC = "tijera";
         }
+        contenedorComputadorElige.classList.add(`animacion_${elecC}`);
+        animComputadorElige.classList.add(`animacion_${elecC}`); 
+        return elecC;   	
     }
     function resultado(u, c){
         if((u=="piedra" && c=="papel")||(u=="papel" && c=="tijera")||(u=="tijera" && c=="piedra")){
-            txtResultado.innerHTML = `el usuario pierde: El usuaio eligió ${u} y la computadora eligio ${c}`;
+            txtResultado.innerHTML = "el usuario pierde:";
+            txtSubresultado.innerHTML = `El usuario eligio ${u} y la computadora eligio ${c}`;
         }else if((u=="piedra" && c=="tijera")||(u=="papel" && c=="piedra")||(u=="tijera" && c=="papel")){
-            txtResultado.innerHTML = `El usuario gana:El usuario eligio ${u} y la computadora eligio ${c}`;
+            txtResultado.innerHTML = "El usuario gana:";
+            txtSubresultado.innerHTML = `El usuario eligio ${u} y la computadora eligio ${c}`;
         }else if((u=="piedra" && c=="piedra")||(u=="papel" && c=="papel")||(u=="tijera" && c=="tijera")){
-            txtResultado.innerHTML = `Empate: El usuario eligio ${u} y la computadora eligio ${c}`;
+            txtResultado.innerHTML = "Empate:";
+            txtSubresultado.innerHTML = `El usuario eligio ${u} y la computadora eligio ${c}`;
         }
 
     }
@@ -67,4 +79,41 @@ document.addEventListener("DOMContentLoaded", function () {
            txtEleccionComputador.innerHTML = computadoraElige;
        } 
     });
+
+    btnPapel.addEventListener("click", function(){
+        usuarioElige = eleccionUsuario("papel");
+        if(escUsuarioElige.style.display = "block"){
+            escUsuarioElige.style.display= "none";
+            escComputadoraElige.style.display="block";
+            computadoraElige = eleccionComputadora();
+            txtEleccionComputador.innerHTML = computadoraElige;
+        } 
+    });
+
+    btnTijera.addEventListener("click", function(){
+        usuarioElige = eleccionUsuario("tijera");
+        if(escUsuarioElige.style.display = "block"){
+            escUsuarioElige.style.display= "none";
+            escComputadoraElige.style.display="block";
+            computadoraElige = eleccionComputadora();
+            txtEleccionComputador.innerHTML = computadoraElige;
+        } 
+    });
+
+    btnContinuar.addEventListener("click", function(){
+        if(escComputadoraElige.style.display = "block"){
+        escUsuarioElige.style.display= "none";
+        escComputadoraElige.style.display="none";
+        escResultado.style.display="block";
+        }  
+        resultado(usuarioElige, computadoraElige);
+    });
+
+    btnReiniciar.addEventListener("click", function(){
+        escComputadoraElige.style.display="none";
+        escResultado.style.display="none";
+        escUsuarioElige.style.display= "block";
+        animComputadorElige.removeAttribute("class");
+    });
+    
 });

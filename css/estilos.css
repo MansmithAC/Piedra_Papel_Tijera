@@ -1,0 +1,68 @@
+:root{
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body{
+    background-image: url(../imgs/motivo.jpg);
+    background-repeat: repeat;
+    background-position: 100px 0px;
+}
+.Contenedor{
+    width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.usuario_elige{}
+.usuario_elige ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+
+}
+.usuario_elige ul li{
+    text-align: center;
+}
+.usuario_elige ul li div{
+    width: 300px;
+    height: 300px;
+    background: black;
+}
+.computadora_elige div{
+    width: 300px;
+    height: 300px;
+    background: black;
+}
+.usuario_elige ul li .animacion_piedra, .animacion_piedra{
+    background: url(../imgs/sprite_piedra.png);
+}
+.usuario_elige ul li .animacion_piedra:hover{
+    animation: anima_sprite 1000ms infinite alternate steps(23);
+}
+.usuario_elige ul li .animacion_papel, .animacion_papel{
+    background: url(../imgs/sprite_papel.png);
+}
+.usuario_elige ul li .animacion_papel:hover{
+    animation: anima_sprite 1000ms infinite alternate steps(23);
+}
+.usuario_elige ul li .animacion_tijera, .animacion_tijera{
+    background: url(../imgs/sprite_tijeras.png);
+}
+.usuario_elige ul li .animacion_tijera:hover{
+    animation: anima_sprite 1000ms infinite alternate steps(23);
+}
+
+@keyframes anima_sprite{
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -6900px 0;
+    }
+}
